@@ -1,4 +1,4 @@
-# TestReadCorrespondences
+# TestReadCorrespondences reads a file of correspondences and displays some information
 
 from ReadCorrespondences import ReadCorrespondences
 
