@@ -1,3 +1,5 @@
+# Created by R3D Align
+# see http://rna.bgsu.edu/r3dalign/results/5147462ca4e64#.UUdJPFfxdi3
 2QBD|1|A|U|5 corresponds_to 2AW7|1|A|U|5
 2QBD|1|A|G|6 corresponds_to 2AW7|1|A|G|6
 2QBD|1|A|A|7 corresponds_to 2AW7|1|A|A|7
