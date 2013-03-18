@@ -12,7 +12,7 @@ def WriteCorrespondences(filename,correspondences,header,separator="corresponds_
 	
 	# Write each line from the header
 	for headLine in header:
-		fp.write(headLine + "\n")
+		fp.write(headLine)
 	
 	# Write each correspondance to a file
 	for key, value in correspondences.iteritems():
