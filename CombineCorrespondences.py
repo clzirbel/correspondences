@@ -6,9 +6,19 @@
 #          header:  A new header line saying that these are inferred correspondences,
 #          then the lines from header1, then a blank header line, then the 
 #          lines from header2
-# NOTES:   If a value in correspondences1 has no key in correspondences2, skip it
+#          extra:  A dictionary of correspondences in correspondences1 for which
+#          there is no further correspondence in correspondences2
 # AUTHOR:  
 
 def CombineCorrespondences(correspondences1,header1,correspondences2,header2):
 
-  return correspondences, header
+  correspondences = {}                            # empty dictionary
+  header = []                                     # empty list for headers
+  extra = {}                                      # empty dictionary for extras
+
+  for key, value in correspondences1.iteritems():
+
+
+
+
+  return correspondences, header, extra 

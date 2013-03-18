@@ -1,6 +1,9 @@
 # Windows shortcuts
 *.lnk
 
+# Test files
+*.tmp
+
 *.py[cod]
 
 # C extensions

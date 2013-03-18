@@ -17,6 +17,6 @@ print in2not2
 
 # --------- Once write correspondences is written, use it to write to file:
 
-# WriteCorrespondences('TestCompareCorrespondences_output_1.txt',identical,['# identical'],"maps_to")
-# WriteCorrespondences('TestCompareCorrespondences_output_1.txt',in1not2,['# in 1 not 2'],"maps_to")
-# WriteCorrespondences('TestCompareCorrespondences_output_1.txt',in2not1,['# in 2 not 1'],"maps_to")
+# WriteCorrespondences('TestCompareCorrespondences_output_1.tmp',identical,['# identical'],"maps_to")
+# WriteCorrespondences('TestCompareCorrespondences_output_1.tmp',in1not2,['# in 1 not 2'],"maps_to")
+# WriteCorrespondences('TestCompareCorrespondences_output_1.tmp',in2not1,['# in 2 not 1'],"maps_to")

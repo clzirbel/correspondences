@@ -11,4 +11,4 @@ print correspondences['2QBD|1|A|A|19']
 
 print error
 
-WriteCorrespondences('TestWriteCorrespondences_output.txt',correspondences,header,"maps_to")
+WriteCorrespondences('TestWriteCorrespondences_output.tmp',correspondences,header,"maps_to")
