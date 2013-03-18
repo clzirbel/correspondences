@@ -15,10 +15,11 @@ def WriteCorrespondences(filename,correspondences,header,separator="corresponds_
 		fp.write(headLine + "\n")
 	
 	# Write each correspondance to a file
-	for key, value in leftSide:
+	for key, value in correspondences.iteritems():
 		fp.write(key + "\t" + separator + "\t" + value + "\n")
 	
-	if (verbose) print "Wrote " + str(len(leftSide)) + " correspondences to " + filename
+	if (verbose):
+		print "Wrote " + str(len(correspondences)) + " correspondences to " + filename
 	
 	# Close the file	
 	fp.close()
