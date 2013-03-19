@@ -2,7 +2,7 @@
 
 from ReadCorrespondences import ReadCorrespondences
 from CombineCorrespondences import CombineCorrespondences
-# from WriteCorrespondences import WriteCorrespondences
+from WriteCorrespondences import WriteCorrespondences
 
 # -------- First test:  read correspondences both ways, combine, which should
 # -------- result in nucleotides from 2QBD being aligned to themselves
@@ -18,4 +18,4 @@ print header
 
 # --------- Once write correspondences is written, use it to write to file:
 
-# WriteCorrespondences('TestCombineCorrespondences_output.txt',correspondences,header,"maps_to")
+WriteCorrespondences('TestCombineCorrespondences_output.txt',correspondences,header,"maps_to")
