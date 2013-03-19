@@ -10,12 +10,13 @@ from CombineCorrespondences import CombineCorrespondences
 correspondences1, header1, error1 = ReadCorrespondences('2QBD_3I8H_correspondences.txt',0)
 correspondences2, header2, error2 = ReadCorrespondences('2QBD_3I8H_correspondences.txt',1)
 
-correspondences, header = CombineCorrespondences(correspondences1,header1,correspondences2,header2)
+correspondences, header,extra = CombineCorrespondences(correspondences1,header1,correspondences2,header2)
 
 print correspondences
 
 print header
 
+print extra
 # --------- Once write correspondences is written, use it to write to file:
 
 # WriteCorrespondences('TestCombineCorrespondences_output.txt',correspondences,header,"maps_to")
