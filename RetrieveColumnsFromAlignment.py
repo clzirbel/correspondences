@@ -1,13 +1,13 @@
-# This file will have several functions in it, which help to retrieve
-# sequence variants from a multiple sequence alignment that correspond
-# to given nucleotides in a 3D structure file.
-
-import re  # import functions for regular expressions
-
-# INPUT:   a: a string referring to a column in an alignment
-#          Example:  a = "GG16S2012|106"
-# OUTPUT:  n: the integer at the end of the column specification
-# AUTHOR:  
+# INPUT:   ranges:  a list of lists of columns in an alignment
+#          fastafilename:  a string telling the location of an alignment in FASTA format
+#          outputfilename:  a string telling the location of the file to write the results into
+# OUTPUT:  for each line of the alignment, a comma-separated set of nucleotides
+#          this matches the format of a range string
+#          Example:  2QBD|1|A|A|10,2QBD|1|A|G|11:2QBD|1|A|U|14,,2QBD|1|A|U|17
+#          Example:  A,GGCU,,C
+# NOTES:   writing to a file is safer than returning a variable because very
+#          large alignments may be used, and one might run out of RAM
+# AUTHOR:  Craig L. Zirbel
 
 def GetAlignmentColumn(a):
 
