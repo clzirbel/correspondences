@@ -21,9 +21,9 @@ def CombineCorrespondences(correspondences1,header1,correspondences2,header2):
   
   
 #Creating the new header line
-  header.append('These are inferred correspondences')     
+  header.append('#These are inferred correspondences')     
   header.append(header1)
-  header.append(' ')
+  header.append('# /n ')
   header.append(header2)
 
   
