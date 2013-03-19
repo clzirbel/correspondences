@@ -1,6 +1,6 @@
-#          This file will have several functions in it, which help to retrieve
-#          sequence variants from a multiple sequence alignment that correspond
-#          to given nucleotides in a 3D structure file.
+# This file will have several functions in it, which help to retrieve
+# sequence variants from a multiple sequence alignment that correspond
+# to given nucleotides in a 3D structure file.
 
 import re  # import functions for regular expressions
 
@@ -16,32 +16,48 @@ def GetAlignmentColumn(a):
   # use regular expressions to find the integer at the end of a, extract it,
   # and convert it to an integer  
 
-  return
+  return n
   
-  
-  
-  
-# INPUT:   rs: comma and colon separated string of column identifier
-#          Example:  a = "GG16S2012|106,GG16S2012|110:GG16S2012|120,,GG16S2012|127"
+# INPUT:   rs: command colon separated string of nucleotide IDs
+#          correspondences:  correspondences between a 3D structure and a 
+#          sequence alignment.
+#          Example: 
 # OUTPUT:  ranges:  a list of lists of column integers
-# NOTES:   single column identifiers should come back as a single integer
-#          a range, indicated by a colon, should come back as all integers
-#          from the first to the last, including first and last
-#          it is possible to return an empty string 
+# NOTES:   Loop through the list, converting nucleotide IDs to column IDs, then
+#          convert to lists of integers, one for each range
 # AUTHOR:  
 
-def ParseRangeString(rs):
+def ConvertIDRangeString(correspondences,rs):
 
   ranges = []
   
   t = rs.split(",")                             # split on commas  
 
+  print t
+
   for r in t:                                   # iterate through ranges
     b = r.split(":")                            # split on colons, if any
 
-    for g in b:
+    if len(b) == 1:                             # just one column here
+      NTID = b[0]                               # this is a nucleotide ID
+      if NTID in correspondences:               # check that there is a correspondence
+        ColumnID = correspondences[NTID]        # look up the column ID
+        ranges.append([GetAlignmentColumn(ColumnID)]) # append to ranges
+      else:
+        ranges.append([])                       # blank range
+        
+    elif len(b) == 2:
+      lowerNTID = b[0]
+      upperNTID = b[1]
+      if (lowerNTID in correspondences) and (upperNTID in correspondences):
+        lower = GetAlignmentColumn(lowerNTID)   # number before the colon
+        upper = GetAlignmentColumn(upperNTID)   # number after the colon
+        newrange = range(lower,upper+1)         # set of integers, inclusive
+        ranges.append(newrange)                 # append to ranges
+      else:
+        ranges.append([])                       # something went wrong; empty list
+    else:
+      ranges.append([])                         # something went wrong; empty list
     
-      c = GetAlignmentColumn(g)
-
-
-  return ranges 
+  return ranges
+   
