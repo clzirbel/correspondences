@@ -12,6 +12,12 @@ Outputfilename = "2QBD_3I8H_correspondences_514313b142ec5.txt"
 R3DAlignfilename = "2QBG_3V2F_correspondences_50dd09ef4f614.csv"
 Outputfilename = "2QBG_3V2F_correspondences_50dd09ef4f614.txt"
 
+R3DAlignfilename = "3V2F_3U5H_correspondences_511bdbc4dc920.csv"
+Outputfilename = "3V2F_3U5H_correspondences_511bdbc4dc920.txt"
+
+R3DAlignfilename = "2QBG_3U5H_correspondences_511bdafa59aa6.csv"
+Outputfilename = "2QBG_3U5H_correspondences_511bdafa59aa6.txt"
+
 
 f = open(R3DAlignfilename,'r')
 g = open(Outputfilename,'w')
