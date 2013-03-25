@@ -1,12 +1,17 @@
 from R3DAlignToID import R3DAlignToID
 
 # Put a R3D Align output filename here:
-R3DAlignfilename = "2QBD_3I8H_correspondences_514313b142ec5.csv"
-R3DAlignfilename = "2QBD_2AW7_correspondences_5147462ca4e64.csv"
-
 # Put the desired output filename here:
-Outputfilename = "2QBD_3I8H_correspondences_514313b142ec5.txt"
+
+R3DAlignfilename = "2QBD_2AW7_correspondences_5147462ca4e64.csv"
 Outputfilename = "2QBD_2AW7_correspondences_5147462ca4e64.txt"
+
+R3DAlignfilename = "2QBD_3I8H_correspondences_514313b142ec5.csv"
+Outputfilename = "2QBD_3I8H_correspondences_514313b142ec5.txt"
+
+R3DAlignfilename = "2QBG_3V2F_correspondences_50dd09ef4f614.csv"
+Outputfilename = "2QBG_3V2F_correspondences_50dd09ef4f614.txt"
+
 
 f = open(R3DAlignfilename,'r')
 g = open(Outputfilename,'w')
