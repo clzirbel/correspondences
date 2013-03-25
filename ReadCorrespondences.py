@@ -20,7 +20,7 @@ def ReadCorrespondences(filename,mode=0):
     if line[0] == '#':                         # header lines must begin with #
       header.append(line)                      # add to the header list
     else:
-      t = line.split()                         # split line at space or tab
+      t = line.replace("\n","").split()        # split line at space or tab
       if len(t) == 3:                          # if there are three entries
         if mode == 0:                          # first column is the key
           correspondences[t[0]] = t[2]         # store the correspondence

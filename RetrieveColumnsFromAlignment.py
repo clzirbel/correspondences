@@ -9,55 +9,53 @@
 #          large alignments may be used, and one might run out of RAM
 # AUTHOR:  Craig L. Zirbel
 
-def GetAlignmentColumn(a):
+def ExtractColumnsFromLine(line,ranges):
 
-  t = a.split('|');                             # split on | character
-  n = int(t[-1]);                               # convert to number
+  line = line.replace(" ","")               # remove any spaces
+  line = line.replace("\n","")              # remove newline characters
 
-  return n
+  s = ''                                    # accumulate extract here
+  for i in range(0,len(ranges)):            # loop through ranges
+    r = ranges[i]                           # focus on this range now
+    if i > 0:
+      s = s + ','                           # separate by commas
+    if len(r) == 1:                         # single column
+      s = s + line[r[0]-1]                  # extract single letter
+    elif len(r) == 2:                       # range of columns
+      s = s + line[(r[0]-1):r[1]]           # extract range of columns
   
-# INPUT:   rs: command colon separated string of nucleotide IDs
-#          correspondences:  correspondences between a 3D structure and a 
-#          sequence alignment.
-#          Example: 
-# OUTPUT:  ranges:  a list of lists of column integers
-# NOTES:   Loop through the list, converting nucleotide IDs to column IDs, then
-#          convert to lists of integers, one for each range
-# AUTHOR:  
+  return s
 
-def ConvertIDRangeString(correspondences,rs):
+def RetrieveColumnsFromAlignment(ranges,fastafilename,outputfilename):
 
-  ranges = []
+  print "Reading",fastafilename
+  print "Writing",outputfilename
   
-  t = rs.split(",")                             # split on commas  
-
-  print t
-
-  for r in t:                                   # iterate through ranges
-    b = r.split(":")                            # split on colons, if any
-
-    if len(b) == 1:                             # just one nucleotide here
-      NTID = b[0]                               # this is a nucleotide ID
-      if NTID in correspondences:               # check that there is a correspondence
-        ColumnID = correspondences[NTID]        # look up the column ID
-        ranges.append([GetAlignmentColumn(ColumnID)]) # append to ranges
-      else:
-        ranges.append([])                       # blank range
-        
-    elif len(b) == 2:                           # two-nucleotide range
-      lowerNTID = b[0]
-      upperNTID = b[1]
-      if (lowerNTID in correspondences) and (upperNTID in correspondences):
-        lowerColumnID = correspondences[lowerNTID]  # map NT to alignment column
-        upperColumnID = correspondences[upperNTID]  # mat NT to alignment column
-        lower = GetAlignmentColumn(lowerColumnID)   # number before the colon
-        upper = GetAlignmentColumn(upperColumnID)   # number after the colon
-        newrange = range(lower,upper+1)         # set of integers, inclusive
-        ranges.append(newrange)                 # append to ranges
-      else:
-        ranges.append([])                       # something went wrong; empty list
+  f = open(fastafilename,'r')
+  g = open(outputfilename,'w')
+  aligned = ""
+  c = 0
+      
+  for line in f:
+    if line[0] == '>':                          # header line
+      if len(aligned) > 0:                      # sequence has been accumulated
+        s = ExtractColumnsFromLine(aligned,ranges) # pull out the right columns  
+        c = c + 1
+        if c < 0:
+          print "One line of FASTA file has length",str(len(aligned))
+          print "One line of FASTA file:",aligned[0:40]
+          print "One line of extracts has length",str(len(s))
+          print "One line of extracts:",s[0:40]
+        g.write(header+"\n")
+        g.write(s+"\n")                         # write to file
+      header = line.replace("\n","")            # save the current line
+      aligned = ""                              # start on the next sequence
     else:
-      ranges.append([])                         # something went wrong; empty list
-    
-  return ranges
-   
+      aligned = aligned + line                  # append new sequence line
+
+  s = ExtractColumnsFromLine(aligned,ranges) # pull out the right columns  
+  g.write(header+"\n")                    # write header
+  g.write(s+"\n")                         # write to file
+      
+  f.close()
+  g.close()

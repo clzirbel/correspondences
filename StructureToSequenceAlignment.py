@@ -31,8 +31,6 @@ def ConvertIDRangeString(correspondences,rs):
   
   t = rs.split(",")                             # split on commas  
 
-  print t
-
   for r in t:                                   # iterate through ranges
     b = r.split(":")                            # split on colons, if any
 
@@ -42,6 +40,7 @@ def ConvertIDRangeString(correspondences,rs):
         ColumnID = correspondences[NTID]        # look up the column ID
         ranges.append([GetAlignmentColumn(ColumnID)]) # append to ranges
       else:
+        print "StructureToSequenceAlignment: range 1, empty list", NTID
         ranges.append([])                       # blank range
         
     elif len(b) == 2:                           # two-nucleotide range
@@ -52,11 +51,13 @@ def ConvertIDRangeString(correspondences,rs):
         upperColumnID = correspondences[upperNTID]  # mat NT to alignment column
         lower = GetAlignmentColumn(lowerColumnID)   # number before the colon
         upper = GetAlignmentColumn(upperColumnID)   # number after the colon
-        newrange = range(lower,upper+1)         # set of integers, inclusive
+        newrange = [lower,upper]                # set of integers, inclusive
         ranges.append(newrange)                 # append to ranges
       else:
+        print "StructureToSequenceAlignment: range 2, empty list",lowerNTID,upperNTID,"maybe because these nucleotides come from a different chain than the alignment covers"
         ranges.append([])                       # something went wrong; empty list
     else:
+      print "StructureToSequenceAlignment: wrong length nucleotide range",lowerNTID,upperNTID
       ranges.append([])                         # something went wrong; empty list
     
   return ranges
