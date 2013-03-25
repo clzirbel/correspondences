@@ -18,12 +18,24 @@ def CompareCorrespondences(correspondences1,header1,correspondences2,header2):
   # to identical.  If not, add it to in1not2. 
 
   for key, value in correspondences1.iteritems():
-
-
-
+    if key in correspondences2:
+      if value==correspondences2[key]:
+        identical[key]= value
+    else:
+      in1not2[key] = value
+    
+  for key, value in correspondences2.iteritems():
+    if key in correspondences1:
+      if value!=correspondences1[key]:
+        in2not1[key] = value
+    else:
+      in2not1[key] = value     
+      
+    
 
   # next, iterate through all key, value pairs in correspondences2.
   # Only look for ones that are not in correspondences1, and add them to
   # in2not1
 
   return identical, in1not2, in2not1
+
