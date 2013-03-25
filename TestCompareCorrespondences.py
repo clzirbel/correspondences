@@ -2,6 +2,8 @@
 
 from ReadCorrespondences import ReadCorrespondences
 from CompareCorrespondences import CompareCorrespondences
+from WriteCorrespondences import WriteCorrespondences
+
 # -------- First test:  read two correspondences and compare
 
 correspondences1, header1, error1 = ReadCorrespondences('2QBD_3I8H_correspondences.txt',0)
