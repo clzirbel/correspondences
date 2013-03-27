@@ -33,29 +33,43 @@ def RetrieveColumnsFromAlignment(ranges,fastafilename,outputfilename):
   
   f = open(fastafilename,'r')
   g = open(outputfilename,'w')
+
+  maxcol = 0;
+  for r in ranges:
+    for q in r:
+      if q > maxcol:
+        maxcol = q
+    
   aligned = ""
   c = 0
       
   for line in f:
     if line[0] == '>':                          # header line
-      if len(aligned) > 0:                      # sequence has been accumulated
+      c = c + 1
+      if len(aligned) > maxcol:                 # enough sequence has been accumulated
         s = ExtractColumnsFromLine(aligned,ranges) # pull out the right columns  
-        c = c + 1
         if c < 0:
+          print c
           print "One line of FASTA file has length",str(len(aligned))
           print "One line of FASTA file:",aligned[0:40]
-          print "One line of extracts has length",str(len(s))
-          print "One line of extracts:",s[0:40]
+#          print "One line of extracts has length",str(len(s))
+#          print "One line of extracts:",s[0:40]
         g.write(header+"\n")
         g.write(s+"\n")                         # write to file
+#     else:
+#        if len(aligned) > 0:
+#          print "Line",str(c),"of FASTA file has length",str(len(aligned)),"but maxcol is ",str(maxcol)
+#          print header
+#          print aligned
       header = line.replace("\n","")            # save the current line
       aligned = ""                              # start on the next sequence
     else:
       aligned = aligned + line                  # append new sequence line
 
-  s = ExtractColumnsFromLine(aligned,ranges) # pull out the right columns  
-  g.write(header+"\n")                    # write header
-  g.write(s+"\n")                         # write to file
+  if len(aligned) > maxcol:
+    s = ExtractColumnsFromLine(aligned,ranges) # pull out the right columns  
+    g.write(header+"\n")                    # write header
+    g.write(s+"\n")                         # write to file
       
   f.close()
   g.close()

@@ -1,4 +1,4 @@
-# INPUT:   motifstring: comma-separated list of motif names
+# INPUT:   motifstring: comma separated list of motif names
 #          extractfilename: name of extract file, with comma-separated lines
 #          MSAID: identifier for the multiple sequence alignment
 # OUTPUT:  individual FASTA-format files for each unique sequence variant
@@ -21,7 +21,7 @@ def MakeFASTAFilesForMotifs(motifstring,extractfilename,MSAID,PDBID,outputpath):
 
   for line in f:                                # read each line of extract file
     if line[0] != ">":                          # header line starts with >
-      e = line.split(",")                       # split into fields
+      e = line.replace("\n","").split(",")      # split into fields
       if len(e) != len(motifs):                 # they are supposed to match
         print "Number of motifs",len(motifs),"and number of extracts",len(e),"do not match"
       else:
