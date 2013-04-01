@@ -12,4 +12,9 @@ sequencenum, bestheader, bestsequence, matches, a1, a2, p1, p2 = FindBestAlignme
 
 # --------- 
 
+sequence = "VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR"
+MSAfilename = "hemoglobin_alpha.fasta"
+sequencetype = "protein"
+
+sequencenum, bestheader, bestsequence, matches, a1, a2, p1, p2 = FindBestAlignmentRow(sequence,MSAfilename,sequencetype):
  
