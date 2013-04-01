@@ -21,10 +21,9 @@ def CombineCorrespondences(correspondences1,header1,correspondences2,header2):
   
   
 #Creating the new header line
-  header.append('#These are inferred correspondences')     
-  header.append(header1)
-  header.append('# /n ')
-  header.append(header2)
+  header.append('#These are inferred correspondences \n')     
+  header=header + header1
+  header= header + header2
 
   
   for key, value in correspondences1.iteritems():	#Iterating through the correspondences dictionary
