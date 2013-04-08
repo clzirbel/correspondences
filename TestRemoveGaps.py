@@ -13,3 +13,12 @@ newseq = RemoveGaps(seq)
 
 print newseq
 
+# --------- Second test: read a FASTA file and remove the gaps
+
+header, sequence, fasta = ReadFASTAAlignment("IL_93568.1 IL_1FJG_026 GG16S2012.fasta")
+
+print sequence
+
+newsequence = RemoveGaps(sequence)
+
+
