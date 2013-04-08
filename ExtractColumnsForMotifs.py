@@ -1,4 +1,4 @@
-# UseRetrieveColumnsFromAlignment 
+# ExtractColumnsForMotifs
 
 from ReadCorrespondences import ReadCorrespondences
 from StructureToSequenceAlignment import ConvertIDRangeString
