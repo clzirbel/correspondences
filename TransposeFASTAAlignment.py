@@ -9,6 +9,7 @@
 #          load it all into memory at once and then write out each column.
 #          It is going to be hard to do!
 #          Maybe search online for "transpose large character matrix"
+#          For example, http://compgroups.net/comp.unix.shell/how-to-transpose-large-matrix/395899
 # AUTHOR:
 
 import re                                      # import regular expression tools
