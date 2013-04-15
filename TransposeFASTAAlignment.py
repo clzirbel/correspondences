@@ -1,26 +1,26 @@
-# INPUT:   filename of text file of alignment in FASTA format
-# OUTPUT:  header:  a list of header lines
-#          sequence:  a list of sequence lines, with newline characters and spaces removed
+# INPUT:   filename: name of text file of alignment in FASTA format
+#          outputfilename: file to write
+# OUTPUT:  numcolumns: number of columns found
+#          numlines: number of sequence lines found
+#          a text file called outputfilename, whose first row is the letters
+#          in column 1 of the alignment, second row is the letters in column 2,
+#          all in the same order as in the original alignment
+# NOTE:    The problem is that the original file may be 10 GB, so you can't
+#          load it all into memory at once and then write out each column.
+#          It is going to be hard to do!
+#          Maybe search online for "transpose large character matrix"
 # AUTHOR:
-# NOTE:    the first version of this program does not account for the fact
-#          that some FASTA files have sequence lines spread out over multiple lines
 
 import re                                      # import regular expression tools
 
-def ReadFASTAAlignment(filename):
-
-  header = []                                  # empty list for header lines
-  sequence = []                                # empty list for sequence lines
-  error = []                                   # empty list for error messages
+def TransposeFASTAAlignment(filename):
 
   f = open(filename,'r')                       # open text file for reading
   
   for line in f:                               # loop through lines of the file
-    if line[0] == '>':                         # header lines must begin with >
-      header.append(line)                      # add to the header list
-    else:
-      sequence.append(line)                    # add to the sequence list
+
+
 
   f.close()
   
-  return header, sequence, error
+  return numcolumns, numlines
