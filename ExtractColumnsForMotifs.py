@@ -11,9 +11,11 @@ if os.getcwd().find('zirbel') > 0:              # identify the user
   AlignmentPath = "C:\\Users\\zirbel\\Documents\\My Dropbox\\Alignments"
   GreenGenesPath = "C:\\Users\\zirbel\\Documents\\Alignments"
   MotifPath = "C:\\Users\\zirbel\\Documents\\My Dropbox\\BGSURNA\\Motifs\\lib\\Variants_from_alignments\\IL\\1.0"
+  MotifPath = "C:\\Users\\zirbel\\Documents\\My Dropbox\\BGSURNA\\Motifs\\lib\\Variants_from_alignments\\HL"
   CorrespondencePath = "C:\\Users\\zirbel\\Documents\\My Dropbox\\Alignments"
 
-f = open(MotifPath + os.sep + "Motif_ranges.txt",'r')  # open motif ranges for reading
+# f = open(MotifPath + os.sep + "Motif_ranges.txt",'r')  # open motif ranges for reading
+f = open(MotifPath + os.sep + "Loop_ranges.txt",'r')  # open motif ranges for reading
 
 for line in f:
   t = line.replace("\n","").split("\t")                     # tab delimited

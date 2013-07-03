@@ -16,6 +16,7 @@ def ReadFASTAAlignment(filename):
   f = open(filename,'r')                       # open text file for reading
   
   for line in f:                               # loop through lines of the file
+    line = line.replace("\n","")               # remove newline character
     if line[0] == '>':                         # header lines must begin with >
       header.append(line)                      # add to the header list
     else:
